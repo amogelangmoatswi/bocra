@@ -281,7 +281,7 @@ export default function FAQsPage() {
                       </p>
                     </div>
 
-                    <Accordion type="single" collapsible className="space-y-4">
+                    <Accordion multiple={false} className="space-y-4">
                       {filteredFaqs.map((faq, index) => (
                         <AccordionItem
                           key={faq.id}

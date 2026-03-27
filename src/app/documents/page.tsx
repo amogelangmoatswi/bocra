@@ -124,13 +124,13 @@ export default function DocumentsPage() {
     currentPage * ITEMS_PER_PAGE
   );
 
-  const handleCategoryChange = (value: string) => {
-    setSelectedCategory(value);
+  const handleCategoryChange = (value: string | null) => {
+    setSelectedCategory(value ?? "all");
     setCurrentPage(1);
   };
 
-  const handleSearch = (value: string) => {
-    setSearchQuery(value);
+  const handleSearch = (value: string | null) => {
+    setSearchQuery(value ?? "");
     setCurrentPage(1);
   };
 
@@ -264,17 +264,14 @@ export default function DocumentsPage() {
                           </Badge>
                         </TableCell>
                         <TableCell className="text-center">
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            className="text-bocra-blue hover:text-bocra-blue-light hover:bg-bocra-blue/10"
-                            asChild
+                          <a
+                            href={doc.downloadUrl}
+                            download
+                            className="inline-flex items-center gap-1.5 rounded-lg px-2.5 h-7 text-[0.8rem] font-medium text-bocra-blue hover:text-bocra-blue-light hover:bg-bocra-blue/10 transition-colors"
                           >
-                            <a href={doc.downloadUrl} download>
-                              <Download className="w-4 h-4 mr-2" />
-                              Download
-                            </a>
-                          </Button>
+                            <Download className="w-4 h-4" />
+                            Download
+                          </a>
                         </TableCell>
                       </TableRow>
                     ))
