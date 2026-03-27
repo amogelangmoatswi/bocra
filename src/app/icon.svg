@@ -1,0 +1,14 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Solid background for visibility if desired, or transparent -->
+  <rect width="512" height="512" fill="white" rx="100" />
+  
+  <text x="256" y="280" font-family="Arial, Helvetica, sans-serif" font-weight="900" font-size="160" fill="#9fa1a4" letter-spacing="-8" text-anchor="middle">BOCRA</text>
+
+  <!-- Four Dots centered -->
+  <g transform="translate(130, 310)">
+    <circle cx="40" cy="40" r="28" fill="#0072a8" />
+    <circle cx="115" cy="40" r="28" fill="#008c69" />
+    <circle cx="190" cy="40" r="28" fill="#ce0058" />
+    <circle cx="265" cy="40" r="28" fill="#f9c000" />
+  </g>
+</svg>

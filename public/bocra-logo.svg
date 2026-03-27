@@ -1,0 +1,23 @@
+<svg width="500" height="200" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Fallback if font isn't exactly matching, but since it's an SVG we try to use standard sans-serif weights -->
+    <style>
+      .logo-text {
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: 900;
+        font-size: 130px;
+        fill: #9fa1a4;
+        letter-spacing: -6px;
+      }
+    </style>
+  </defs>
+
+  <!-- BOCRA Text -->
+  <text x="10" y="120" class="logo-text">BOCRA</text>
+
+  <!-- Four Dots aligned beautifully under the right side of the text -->
+  <circle cx="270" cy="155" r="18" fill="#0072a8" />
+  <circle cx="320" cy="155" r="18" fill="#008c69" />
+  <circle cx="370" cy="155" r="18" fill="#ce0058" />
+  <circle cx="420" cy="155" r="18" fill="#f9c000" />
+</svg>
