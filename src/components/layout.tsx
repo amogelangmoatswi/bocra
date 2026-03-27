@@ -167,9 +167,9 @@ export function Header() {
       {/* Sector colour strip */}
       <div className="h-1 flex">
         <div className="flex-1 bg-bocra-blue"></div>
-        <div className="flex-1 bg-bocra-yellow"></div>
         <div className="flex-1 bg-bocra-green"></div>
         <div className="flex-1 bg-bocra-red"></div>
+        <div className="flex-1 bg-bocra-yellow"></div>
       </div>
       {/* Top bar */}
       <div className="bg-bocra-blue text-white text-sm hidden md:block">
@@ -614,9 +614,9 @@ export function Footer() {
       {/* Sector colour strip */}
       <div className="h-1 flex">
         <div className="flex-1 bg-bocra-blue"></div>
-        <div className="flex-1 bg-bocra-yellow"></div>
         <div className="flex-1 bg-bocra-green"></div>
         <div className="flex-1 bg-bocra-red"></div>
+        <div className="flex-1 bg-bocra-yellow"></div>
       </div>
       {/* Bottom bar */}
       <div className="border-t border-white/10">

@@ -98,34 +98,38 @@ export default function ServicesPage() {
   return (
     <div className="pb-24">
       {/* Hero with sector strip */}
-      <div className="relative bg-slate-50 dark:bg-muted/10 pt-24 pb-16 lg:pt-32 lg:pb-24 px-4 text-center border-b border-border/50">
-        <div className="max-w-3xl mx-auto animate-fade-in-up">
+      <div className="relative bg-bocra-navy pt-24 pb-20 lg:pt-32 lg:pb-24 px-4 text-center overflow-hidden">
+        {/* Glow Effects */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-bocra-yellow/10 rounded-full blur-[100px] -z-10 translate-x-1/2 -translate-y-1/2"></div>
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-bocra-green/10 rounded-full blur-[100px] -z-10 -translate-x-1/2 translate-y-1/3"></div>
+
+        <div className="max-w-3xl mx-auto animate-fade-in-up relative z-10">
           {/* Sector indicator pills */}
           <div className="flex justify-center gap-3 mb-8">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-bocra-blue/10 text-bocra-blue text-xs font-bold">
-              <span className="w-2 h-2 rounded-full bg-bocra-blue"></span> Telecoms
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-white border border-white/20 text-xs font-bold backdrop-blur-sm">
+              <span className="w-2 h-2 rounded-full bg-bocra-blue-light"></span> Telecoms
             </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-bocra-yellow/10 text-bocra-yellow text-xs font-bold">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-white border border-white/20 text-xs font-bold backdrop-blur-sm">
               <span className="w-2 h-2 rounded-full bg-bocra-yellow"></span> Broadcasting
             </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-bocra-green/10 text-bocra-green text-xs font-bold">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-white border border-white/20 text-xs font-bold backdrop-blur-sm">
               <span className="w-2 h-2 rounded-full bg-bocra-green"></span> Internet
             </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-bocra-red/10 text-bocra-red text-xs font-bold">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-white border border-white/20 text-xs font-bold backdrop-blur-sm">
               <span className="w-2 h-2 rounded-full bg-bocra-red"></span> Postal
             </span>
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-bocra-blue dark:text-white mb-6">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
             Core Regulatory Services
           </h1>
-          <p className="text-lg text-muted-foreground leading-relaxed">
+          <p className="text-lg text-white/80 leading-relaxed">
             Discover the full scope of BOCRA&apos;s mandate across eight core service areas designed
             to foster a connected and digitally driven Botswana.
           </p>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 py-16">
+      <div className="max-w-7xl mx-auto px-4 -mt-16 relative z-20 pb-16">
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
           {SERVICES.map((service) => {
             const Icon = service.icon;
@@ -139,7 +143,7 @@ export default function ServicesPage() {
               : service.color.includes("bocra-green") ? "bg-bocra-green"
               : "bg-bocra-red";
             return (
-              <Card key={service.id} id={service.id} className={`h-full flex flex-col group hover:shadow-lg transition-all duration-300 border-border/50 scroll-mt-24 reveal border-t-4 ${borderTop}`}>
+              <Card key={service.id} id={service.id} className={`h-full flex flex-col group hover:shadow-lg transition-all duration-300 border-border/50 scroll-mt-24 border-t-4 ${borderTop}`}>
                 <CardHeader>
                   <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-transform group-hover:scale-110 ${service.color}`}>
                     <Icon className="w-6 h-6" />
@@ -162,7 +166,7 @@ export default function ServicesPage() {
                   </ul>
                   
                   <Link href={service.link} className="w-full mt-auto">
-                    <Button variant="outline" className="w-full justify-between group-hover:bg-bocra-blue group-hover:text-white group-hover:border-bocra-blue transition-all">
+                    <Button variant="outline" className="w-full justify-between hover:bg-bocra-blue hover:text-white hover:border-bocra-blue transition-all">
                       Access Service
                       <ChevronRight className="w-4 h-4 ml-2 mt-0.5" />
                     </Button>
@@ -174,14 +178,13 @@ export default function ServicesPage() {
         </div>
       </div>
       
-      {/* Mini CTA */}
       <div className="max-w-5xl mx-auto px-4">
-        <div className="relative rounded-3xl overflow-hidden reveal">
+        <div className="relative rounded-3xl overflow-hidden">
           <div className="h-1.5 flex">
             <div className="flex-1 bg-bocra-blue"></div>
-            <div className="flex-1 bg-bocra-yellow"></div>
             <div className="flex-1 bg-bocra-green"></div>
             <div className="flex-1 bg-bocra-red"></div>
+            <div className="flex-1 bg-bocra-yellow"></div>
           </div>
           <div className="bg-bocra-blue p-8 md:p-12 text-center text-white relative overflow-hidden">
             <div className="absolute top-0 left-0 w-64 h-64 bg-bocra-green rounded-full blur-[80px] opacity-20 -translate-x-1/2 -translate-y-1/2"></div>

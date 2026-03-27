@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Table,
   TableBody,
@@ -152,7 +152,7 @@ export default function TendersPage() {
   return (
     <div className="pb-24">
       {/* Header section */}
-      <div className="bg-bocra-navy pt-24 pb-16 lg:pt-32 lg:pb-24 px-4 relative overflow-hidden border-t-4 border-bocra-yellow">
+      <div className="bg-bocra-navy pt-24 pb-16 lg:pt-32 lg:pb-24 px-4 relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNykiLz48L3N2Zz4=')] [mask-image:linear-gradient(to_bottom,white,transparent)] z-0 block"></div>
         <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-l from-bocra-yellow/20 to-transparent z-0"></div>
         <div className="relative z-10 max-w-4xl mx-auto text-center animate-fade-in-up">
@@ -184,56 +184,58 @@ export default function TendersPage() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 -mt-8 relative z-20">
-        <div className="bg-white dark:bg-card rounded-2xl shadow-xl border border-border/50 p-6 md:p-10 mb-8">
+      <div className="max-w-7xl mx-auto px-4 -mt-10 relative z-20">
+        <div className="bg-white dark:bg-card rounded-2xl shadow-xl border border-border/50 p-4 md:p-8 lg:p-10 mb-12">
           {/* Search and filters */}
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border/50 pb-6 mb-6">
-            <Tabs
-              value={activeTab}
-              onValueChange={setActiveTab}
-              className="w-full md:w-auto"
-            >
-              <TabsList className="bg-slate-100 dark:bg-muted p-1">
-                <TabsTrigger
-                  value="all"
-                  className="px-4 data-[state=active]:bg-white dark:data-[state=active]:bg-bocra-navy data-[state=active]:shadow-sm"
-                >
-                  All Tenders
-                </TabsTrigger>
-                <TabsTrigger
-                  value="open"
-                  className="px-4 data-[state=active]:bg-white dark:data-[state=active]:bg-bocra-navy data-[state=active]:shadow-sm"
-                >
-                  Open
-                </TabsTrigger>
-                <TabsTrigger
-                  value="uasf"
-                  className="px-4 data-[state=active]:bg-white dark:data-[state=active]:bg-bocra-navy data-[state=active]:shadow-sm"
-                >
-                  UASF
-                </TabsTrigger>
-              </TabsList>
-            </Tabs>
-            <div className="relative max-w-sm w-full">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-b border-border/50 pb-8 mb-8">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+              <Tabs
+                value={activeTab}
+                onValueChange={setActiveTab}
+                className="w-full sm:w-auto"
+              >
+                <TabsList className="bg-slate-100 dark:bg-muted p-1 w-full sm:w-auto overflow-x-auto">
+                  <TabsTrigger
+                    value="all"
+                    className="px-4 flex-1 sm:flex-none data-[state=active]:bg-white dark:data-[state=active]:bg-bocra-navy data-[state=active]:shadow-sm"
+                  >
+                    All
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="open"
+                    className="px-4 flex-1 sm:flex-none data-[state=active]:bg-white dark:data-[state=active]:bg-bocra-navy data-[state=active]:shadow-sm"
+                  >
+                    Open
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="uasf"
+                    className="px-4 flex-1 sm:flex-none data-[state=active]:bg-white dark:data-[state=active]:bg-bocra-navy data-[state=active]:shadow-sm"
+                  >
+                    UASF
+                  </TabsTrigger>
+                </TabsList>
+              </Tabs>
+            </div>
+            <div className="relative w-full lg:max-w-md">
               <Input
-                placeholder="Search tenders..."
+                placeholder="Find a specific tender..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 bg-slate-50 dark:bg-muted/30"
+                className="pl-10 h-11 bg-slate-50 dark:bg-muted/30 focus:bg-white dark:focus:bg-muted/50 border-input transition-all"
               />
               <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
             </div>
           </div>
 
           {/* Tenders table */}
-          <div className="overflow-x-auto">
-            <Table>
+          <div className="overflow-x-auto rounded-xl border border-border/40">
+            <Table className="min-w-[900px] table-fixed w-full">
               <TableHeader>
-                <TableRow className="bg-slate-50 dark:bg-muted/30">
-                  <TableHead className="font-semibold">Tender Name</TableHead>
-                  <TableHead className="font-semibold">Document</TableHead>
-                  <TableHead className="font-semibold">Closing Date</TableHead>
-                  <TableHead className="font-semibold">Status</TableHead>
+                <TableRow className="bg-slate-50/80 dark:bg-muted/20 hover:bg-slate-50/80">
+                  <TableHead className="font-bold text-foreground h-14 w-[40%]">Tender Name</TableHead>
+                  <TableHead className="font-bold text-foreground h-14 w-[25%]">Documents</TableHead>
+                  <TableHead className="font-bold text-foreground h-14 w-[20%]">Closing Date</TableHead>
+                  <TableHead className="font-bold text-foreground h-14 w-[15%]">Status</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -256,61 +258,65 @@ export default function TendersPage() {
                     return (
                       <TableRow
                         key={tender.id}
-                        className="hover:bg-slate-50 dark:hover:bg-muted/30 transition-colors"
+                        className="hover:bg-slate-50/50 dark:hover:bg-muted/10 transition-colors border-border/40"
                       >
-                        <TableCell className="max-w-md">
-                          <div className="space-y-1">
-                            <p className="font-medium text-foreground leading-snug">
+                        <TableCell className="align-top py-5">
+                          <div className="space-y-2">
+                            <p className="font-semibold text-foreground leading-relaxed whitespace-normal break-words">
                               {tender.name}
                             </p>
                             {tender.category === "uasf" && (
                               <Badge
                                 variant="outline"
-                                className="text-xs text-bocra-green border-bocra-green/30"
+                                className="text-[10px] uppercase tracking-wider text-bocra-green border-bocra-green/40 bg-bocra-green/5"
                               >
                                 UASF Project
                               </Badge>
                             )}
                           </div>
                         </TableCell>
-                        <TableCell>
+                        <TableCell className="align-top py-5">
                           <Link
                             href={tender.documentUrl}
-                            className="flex items-center gap-2 text-bocra-blue hover:text-bocra-blue-light transition-colors group"
+                            className="flex items-center gap-3 text-bocra-blue hover:text-bocra-blue-light transition-colors group group/link w-full max-w-full overflow-hidden"
                           >
-                            <div className="w-8 h-8 rounded bg-red-50 dark:bg-red-500/10 flex items-center justify-center flex-shrink-0 group-hover:bg-red-100 dark:group-hover:bg-red-500/20 transition-colors">
-                              <FileText className="w-4 h-4 text-red-500" />
+                            <div className="w-9 h-9 rounded-lg bg-red-50 dark:bg-red-500/10 flex items-center justify-center flex-shrink-0 group-hover:bg-red-100 dark:group-hover:bg-red-500/20 transition-colors">
+                              <FileText className="w-5 h-5 text-red-500" />
                             </div>
-                            <div className="min-w-0">
-                              <p className="text-sm font-medium truncate max-w-[200px]">
+                            <div className="min-w-0 flex-1">
+                              <p className="text-sm font-bold truncate text-foreground group-hover/link:underline">
                                 {tender.documentName}
                               </p>
-                              <p className="text-xs text-muted-foreground">
-                                {tender.documentSize}
+                              <p className="text-[11px] text-muted-foreground uppercase font-medium">
+                                PDF DOCUMENT • {tender.documentSize}
                               </p>
                             </div>
-                            <Download className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                            <Download className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-all -translate-y-1 group-hover:translate-y-0 text-bocra-blue" />
                           </Link>
                         </TableCell>
-                        <TableCell>
-                          <div className="space-y-1">
-                            <p className="font-medium">
-                              {formatDate(tender.closingDate)}
-                            </p>
-                            {tender.status === "open" && daysRemaining > 0 && (
-                              <p
-                                className={`text-xs ${
-                                  daysRemaining <= 7
-                                    ? "text-orange-600 dark:text-orange-400"
-                                    : "text-muted-foreground"
-                                }`}
-                              >
-                                {daysRemaining} days remaining
+                        <TableCell className="align-top py-5">
+                          <div className="space-y-1.5 min-w-0">
+                            <div className="flex items-center gap-2 text-foreground">
+                              <Calendar className="w-4 h-4 text-muted-foreground" />
+                              <p className="font-bold text-sm">
+                                {formatDate(tender.closingDate)}
                               </p>
+                            </div>
+                            {tender.status === "open" && daysRemaining > 0 && (
+                              <div className="flex items-center gap-1.5 ml-6">
+                                <Clock className={`w-3.5 h-3.5 ${daysRemaining <= 7 ? "text-orange-500" : "text-muted-foreground"}`} />
+                                <p className={`text-xs font-medium ${daysRemaining <= 7 ? "text-orange-600 dark:text-orange-400" : "text-muted-foreground"}`}>
+                                  {daysRemaining}d left
+                                </p>
+                              </div>
                             )}
                           </div>
                         </TableCell>
-                        <TableCell>{getStatusBadge(tender.status)}</TableCell>
+                        <TableCell className="align-top py-5">
+                          <div className="flex items-center justify-start h-full">
+                            {getStatusBadge(tender.status)}
+                          </div>
+                        </TableCell>
                       </TableRow>
                     );
                   })

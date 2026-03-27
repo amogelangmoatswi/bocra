@@ -22,6 +22,7 @@ import { useState, useEffect, useRef } from "react";
 import { Badge } from "@/components/ui/badge";
 import { useLanguage } from "@/components/language-provider";
 import { createClient } from "@/lib/supabase";
+import { AboutHeroGradient } from "@/components/ui/about-hero-gradient";
 
 const ICON_MAP: Record<string, any> = {
   FileText, Globe, MessageSquare, Lock, Radio, BarChart3, Users,
@@ -183,39 +184,26 @@ export default function Home() {
       {/* ════════════════════════════════════════════════════════
           HERO  ─  Deep blue with four-sector colour strip
          ════════════════════════════════════════════════════════ */}
-      <section ref={heroRef} className="relative overflow-hidden pt-24 pb-36 lg:pt-32 lg:pb-44">
-        {/* Background */}
-        <div className="absolute inset-0 bg-bocra-blue -z-20"></div>
-
-        {/* Sector colour strip along the top */}
-        <div className="absolute top-0 left-0 right-0 h-1.5 flex z-30">
-          <div className="flex-1 bg-bocra-blue"></div>
-          <div className="flex-1 bg-bocra-yellow"></div>
-          <div className="flex-1 bg-bocra-green"></div>
-          <div className="flex-1 bg-bocra-red"></div>
+      <section ref={heroRef} className="relative overflow-hidden pt-24 pb-36 lg:pt-32 lg:pb-44 flex items-center justify-center min-h-[600px] lg:min-h-[800px]">
+        {/* ShaderGradient Background Layer */}
+        <div className="absolute inset-0 -z-30">
+          <AboutHeroGradient />
         </div>
 
-        {/* Dots pattern */}
-        <div className="absolute inset-0 overflow-hidden -z-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNykiLz48L3N2Zz4=')] [mask-image:linear-gradient(to_bottom,white,transparent)]"></div>
+        {/* Foundation & Overlays */}
+        <div className="absolute inset-0 bg-bocra-navy/40 -z-20 pointer-events-none"></div>
+        <div className="absolute inset-0 bg-bocra-blue -z-40"></div>
 
-        {/* Glowing sector orbs */}
-        <div className="absolute top-1/4 left-[10%] w-80 h-80 bg-bocra-green/20 rounded-full blur-[120px] -z-10 animate-pulse-glow"></div>
-        <div className="absolute top-1/3 right-[15%] w-72 h-72 bg-bocra-yellow/15 rounded-full blur-[100px] -z-10 animate-pulse-glow delay-200"></div>
-        <div className="absolute bottom-1/4 left-1/2 w-64 h-64 bg-bocra-red/10 rounded-full blur-[100px] -z-10 animate-pulse-glow delay-400"></div>
-
-        <div className="max-w-7xl mx-auto px-4 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 relative z-10 w-full">
           <div className="max-w-3xl animate-fade-in-up">
             {/* Sector pills */}
             <div className="flex flex-wrap items-center gap-2 mb-8">
-              {SECTORS.map((s) => {
-                const SIcon = s.icon;
-                return (
-                  <div key={s.label} className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold text-white/90 backdrop-blur-sm border border-white/10`}>
-                    <span className={`w-2.5 h-2.5 rounded-full ${s.color}`}></span>
-                    {s.label}
-                  </div>
-                );
-              })}
+              {SECTORS.map((s) => (
+                <div key={s.label} className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold text-white/90 backdrop-blur-sm border border-white/10`}>
+                  <span className={`w-2.5 h-2.5 rounded-full ${s.color}`}></span>
+                  {s.label}
+                </div>
+              ))}
             </div>
 
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[1.1] mb-6">
@@ -251,67 +239,43 @@ export default function Home() {
             </div>
           </div>
         </div>
-
-        {/* Stats overlay */}
-        <div className="absolute bottom-0 left-0 right-0 transform translate-y-1/2 hidden lg:block z-20">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="grid grid-cols-4 gap-4">
-              {statsData.map((stat, i) => {
-                const Icon = stat.icon;
-                const sectorColor = [
-                  "border-l-bocra-blue",
-                  "border-l-bocra-yellow",
-                  "border-l-bocra-green",
-                  "border-l-bocra-red",
-                ][i % 4];
-                const sectorTextColor = [
-                  "text-bocra-blue",
-                  "text-bocra-yellow",
-                  "text-bocra-green",
-                  "text-bocra-red",
-                ][i % 4];
-                return (
-                  <Card key={i} className={`glass border-white/20 bg-white/80 dark:bg-bocra-navy/80 shadow-xl reveal delay-100 border-l-4 ${sectorColor}`}>
-                    <CardContent className="p-6 flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-bocra-blue/10 dark:bg-white/10 flex items-center justify-center flex-shrink-0">
-                        <Icon className={`w-6 h-6 ${sectorTextColor}`} />
-                      </div>
-                      <div>
-                        <div className={`text-2xl font-bold ${sectorTextColor}`}>{stat.value}</div>
-                        <div className="text-sm font-medium text-muted-foreground">{stat.label}</div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                );
-              })}
-            </div>
-          </div>
-        </div>
       </section>
 
-      {/* ════════════════════════════════════════════════════════
-          SECTORS BAR  ─  Four regulated sectors
-         ════════════════════════════════════════════════════════ */}
-      <section className="py-8 lg:pt-28 lg:pb-8 bg-white dark:bg-background">
+      {/* Stats overlay */}
+      <div className="relative -mt-16 z-30 hidden lg:block mb-10">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 reveal">
-            {SECTORS.map((s) => {
-              const SIcon = s.icon;
+          <div className="grid grid-cols-4 gap-4">
+            {statsData.map((stat, i) => {
+              const Icon = stat.icon;
+              const sectorColor = [
+                "border-l-bocra-blue",
+                "border-l-bocra-yellow",
+                "border-l-bocra-green",
+                "border-l-bocra-red",
+              ][i % 4];
+              const sectorTextColor = [
+                "text-bocra-blue",
+                "text-bocra-yellow",
+                "text-bocra-green",
+                "text-bocra-red",
+              ][i % 4];
               return (
-                <div key={s.label} className={`flex items-center gap-3 p-4 rounded-xl border border-border/50 bg-white dark:bg-muted/10 shadow-sm`}>
-                  <div className={`w-10 h-10 rounded-lg ${s.color} flex items-center justify-center`}>
-                    <SIcon className="w-5 h-5 text-white" />
-                  </div>
-                  <div>
-                    <div className={`text-sm font-bold ${s.textColor}`}>{s.label}</div>
-                    <div className="text-xs text-muted-foreground">Regulation</div>
-                  </div>
-                </div>
+                <Card key={i} className={`bg-white dark:bg-card shadow-xl reveal delay-100 border-l-4 ${sectorColor}`}>
+                  <CardContent className="p-6 flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-bocra-blue/10 dark:bg-white/10 flex items-center justify-center flex-shrink-0">
+                      <Icon className={`w-6 h-6 ${sectorTextColor}`} />
+                    </div>
+                    <div>
+                      <div className={`text-2xl font-bold ${sectorTextColor}`}>{stat.value}</div>
+                      <div className="text-sm font-medium text-muted-foreground">{stat.label}</div>
+                    </div>
+                  </CardContent>
+                </Card>
               );
             })}
           </div>
         </div>
-      </section>
+      </div>
 
       {/* ════════════════════════════════════════════════════════
           SERVICES  ─  Colour-coded cards
@@ -484,9 +448,9 @@ export default function Home() {
             {/* Gradient strip on top */}
             <div className="h-1.5 flex">
               <div className="flex-1 bg-bocra-blue"></div>
-              <div className="flex-1 bg-bocra-yellow"></div>
               <div className="flex-1 bg-bocra-green"></div>
               <div className="flex-1 bg-bocra-red"></div>
+              <div className="flex-1 bg-bocra-yellow"></div>
             </div>
             <div className="bg-bocra-blue p-8 md:p-12 text-center text-white relative overflow-hidden">
               <div className="absolute top-0 left-0 w-64 h-64 bg-bocra-green rounded-full blur-[80px] opacity-20 -translate-x-1/2 -translate-y-1/2"></div>

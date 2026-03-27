@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { Card, CardContent } from "@/components/ui/card";
 import { Shield, Target, Users, Zap, CheckCircle2, Building2 } from "lucide-react";
+import { NoiseBackground } from "@/components/ui/noise-background";
 
 export const metadata: Metadata = {
   title: "About Us | BOCRA",
@@ -47,8 +48,18 @@ export default function AboutPage() {
   return (
     <div className="pb-24">
       {/* Page Header */}
-      <div className="bg-bocra-navy pt-24 pb-16 lg:pt-32 lg:pb-24 px-4 text-center relative overflow-hidden border-t-4 border-t-bocra-blue">
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-bocra-blue-light via-bocra-navy to-bocra-navy"></div>
+      <div className="bg-bocra-navy pt-24 pb-16 lg:pt-32 lg:pb-24 px-4 text-center relative overflow-hidden border-t-4 border-t-bocra-blue min-h-[400px] flex items-center justify-center">
+        <NoiseBackground 
+          containerClassName="absolute inset-0 w-full h-full"
+          noiseIntensity={0.2}
+          speed={0.05}
+          gradientColors={[
+            "rgba(0, 85, 164, 0.4)",
+            "rgba(46, 139, 87, 0.3)",
+            "rgba(245, 166, 35, 0.2)",
+          ]}
+        />
+        <div className="absolute inset-0 opacity-40 bg-bocra-navy/60 pointer-events-none z-[5]"></div>
         <div className="relative z-10 max-w-3xl mx-auto animate-fade-in-up">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
             Who Is BOCRA?

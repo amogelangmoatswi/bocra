@@ -76,18 +76,18 @@ export default function DomainsPage() {
           </p>
 
           <div className="flex flex-wrap justify-center gap-4 mb-12">
-            <Button className="bg-bocra-green hover:bg-bocra-green-light text-white px-6">
+            <Button className="bg-bocra-green hover:bg-bocra-green/90 text-white font-bold border-none px-6">
               Purchase a Domain
             </Button>
             <Link href="/domains/manage">
-              <Button variant="outline" className="text-white border-white/20 hover:bg-white/10 px-6">
+              <Button variant="outline" className="bg-transparent border-white/40 text-white hover:bg-white/10 px-6">
                 Log into Registry Portal
               </Button>
             </Link>
-            <Button variant="secondary" className="px-6 bg-bocra-green hover:bg-bocra-green/90 text-bocra-navy font-bold">
+            <Button className="bg-white hover:bg-gray-100 text-bocra-green font-bold px-6">
               Become a Registrar
             </Button>
-            <Button variant="outline" className="text-white border-white/20 hover:bg-white/10 px-6">
+            <Button variant="outline" className="bg-transparent border-white/40 text-white hover:bg-white/10 px-6">
               WHOIS Lookup
             </Button>
           </div>
@@ -152,7 +152,7 @@ export default function DomainsPage() {
                       size="lg" 
                       onClick={handleRegister} 
                       disabled={isRegistering}
-                      className="w-full md:w-auto bg-bocra-green hover:bg-bocra-green-light text-lg px-8"
+                      className="w-full md:w-auto bg-bocra-green hover:bg-bocra-green/90 text-white font-bold text-lg px-8 shadow-md"
                     >
                       {isRegistering ? <><Loader2 className="w-5 h-5 mr-2 animate-spin" /> Registering...</> : "Register Now"}
                     </Button>
